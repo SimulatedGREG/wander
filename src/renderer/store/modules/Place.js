@@ -2,12 +2,16 @@ import ls from '@/fs/ls'
 import { remote } from 'electron'
 
 const state = {
-  contents: []
+  contents: [],
+  path: ''
 }
 
 const mutations = {
   setContents (state, contents) {
     state.contents = contents
+  },
+  setPlacePath (state, path) {
+    state.path = path
   }
 }
 

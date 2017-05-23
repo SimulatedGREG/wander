@@ -7,12 +7,19 @@
         </div>
       </div>
       <div class="tile-content">
-        <div class="tile-title">{{ file.name }}</div>
-        <div
-          class="tile-subtitle"
-          v-if="isFile">
-          {{ file.stat.size | prettySize }} · {{ file.stat.birthtime | prettyDateTime }}
-        </div>
+        <template v-if="!isFile">
+          <router-link tag="div" :to="{ name: 'place', query: { path: file.path } }">
+            <div class="tile-title">{{ file.name }}</div>
+            <div
+              class="tile-subtitle"
+              v-if="isFile">
+              {{ file.stat.size | prettySize }} · {{ file.stat.birthtime | prettyDateTime }}
+            </div>
+          </router-link>
+        </template>
+        <template v-else>
+          <div class="tile-title">{{ file.name }}</div>
+        </template>
       </div>
     </div>
   </div>
@@ -27,11 +34,6 @@
     computed: {
       isFile () {
         return this.file.stat.isFile()
-      }
-    },
-    data () {
-      return {
-
       }
     }
   }

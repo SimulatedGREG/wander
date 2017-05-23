@@ -10,22 +10,19 @@
 
 <script>
   import File from './Place/File'
-  import store from '@/store'
 
   export default {
     name: 'place',
-    beforeRouteEnter (to, from, next) {
-      store.dispatch('getContents', to.params.path).then(() => {
-        next()
-      }, err => {
-        next()
-        console.error(err)
-      })
+    created () {
+      this.load(this.$route.query.path)
+    },
+    beforeRouteUpdate (to, from, next) {
+      this.load(to.query.path)
     },
     components: { File },
     computed: {
       contents () {
-        return this.$store.state.Place.contents
+        return this.$store.state.Place.contents.filter(({ path }) => !/(^|\/)\.[^/.]/g.test(path))
       },
       pathExists () {
         return this.sortedContents.length > 0
@@ -40,6 +37,16 @@
     data () {
       return {
 
+      }
+    },
+    methods: {
+      load (path = this.$electron.remote.app.getPath('home')) {
+        this.$store.dispatch('getContents', path).then(() => {
+          this.$store.commit('setPlacePath', path)
+        }, err => {
+          console.error(err)
+          this.$route.push('/')
+        })
       }
     }
   }

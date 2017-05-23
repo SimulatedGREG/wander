@@ -4,6 +4,9 @@
       <div class="column col-12">
         <ribbon></ribbon>
       </div>
+      <div class="column col-12">
+        <breadcrumbs></breadcrumbs>
+      </div>
     </div>
 
     <div class="columns col-gapless">
@@ -19,12 +22,14 @@
 </template>
 
 <script>
+  import Breadcrumbs from '@/components/Breadcrumbs'
   import Ribbon from '@/components/Ribbon'
   import Sidebar from '@/components/Sidebar'
 
   export default {
     name: 'wander',
     components: {
+      Breadcrumbs,
       Ribbon,
       Sidebar
     }

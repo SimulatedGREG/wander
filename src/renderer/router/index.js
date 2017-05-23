@@ -6,7 +6,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/:path?',
+      path: '/',
       name: 'place',
       component: require('@/components/Place')
     },

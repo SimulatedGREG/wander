@@ -58,6 +58,7 @@
     "axios": "^0.16.1",
     "chokidar": "^1.7.0",
     "fs-extra": "^3.0.1",
+    "junk": "^2.1.0",
     "moment": "^2.18.1",
     "prettysize": "^0.1.0",
     "spectre.css": "^0.2.14",

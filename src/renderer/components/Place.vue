@@ -10,6 +10,8 @@
 
 <script>
   import File from './Place/File'
+  import junk from 'junk'
+  import { join } from 'path'
 
   export default {
     name: 'place',
@@ -22,7 +24,7 @@
     components: { File },
     computed: {
       contents () {
-        return this.$store.state.Place.contents.filter(({ path }) => !/(^|\/)\.[^/.]/g.test(path))
+        return this.$store.state.Place.contents.filter(({ name }) => junk.not(name) && !/^\./.test(name))
       },
       pathExists () {
         return this.sortedContents.length > 0
@@ -41,6 +43,7 @@
     },
     methods: {
       load (path = this.$electron.remote.app.getPath('home')) {
+        path = join(path)
         this.$store.dispatch('getContents', path).then(() => {
           this.$store.commit('setPlacePath', path)
         }, err => {
@@ -55,7 +58,7 @@
 <style lang="scss" scoped>
   #place {
     background: $background;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 134px);
     overflow: auto;
   }
 </style>

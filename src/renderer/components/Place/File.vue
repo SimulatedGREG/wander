@@ -8,7 +8,7 @@
       </div>
       <div class="tile-content">
         <template v-if="!isFile">
-          <router-link tag="div" :to="{ name: 'place', query: { path: file.path } }">
+          <router-link tag="div" event="dblclick" :to="{ name: 'place', query: { path: file.path } }">
             <div class="tile-title">{{ file.name }}</div>
             <div
               class="tile-subtitle"
@@ -18,7 +18,7 @@
           </router-link>
         </template>
         <template v-else>
-          <div class="tile-title">{{ file.name }}</div>
+          <div class="tile-title" @dblclick="$electron.shell.openItem(file.path)">{{ file.name }}</div>
         </template>
       </div>
     </div>
@@ -39,5 +39,8 @@
   }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+  .file {
+    padding: 10px;
+  }
 </style>

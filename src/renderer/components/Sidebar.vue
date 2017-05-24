@@ -18,6 +18,6 @@
 <style lang="scss" scoped>
   #sidebar {
     background: rgba($gray-light, .6);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 134px);
   }
 </style>

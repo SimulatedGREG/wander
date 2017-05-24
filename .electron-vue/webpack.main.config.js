@@ -44,8 +44,8 @@ let mainConfig = {
     ]
   },
   node: {
-    __dirname: false,
-    __filename: false
+    __dirname: true,
+    __filename: true
   },
   output: {
     filename: '[name].js',

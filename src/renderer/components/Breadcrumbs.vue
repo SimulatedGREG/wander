@@ -13,18 +13,23 @@
 <script>
   export default {
     computed: {
+      delimiter () {
+        return process.platform === 'win32'
+          ? '\\'
+          : '/'
+      },
       crumbs () {
         let arr = []
-        let split = this.placePath.split('/')
+        let split = this.placePath.split(this.delimiter)
 
         for (let x = 0; x < split.length; x++) {
           let obj = {
             name: split[x],
-            path: '/'
+            path: this.delimiter
           }
 
           for (let y = x; y > 0; y--) {
-            obj.path = '/' + split[y] + obj.path
+            obj.path = this.delimiter + split[y] + obj.path
           }
 
           arr.push(obj)
